@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package foodwheel.cuisine.v1alpha1;
+
+import "google/api/resource.proto";
+
+// Cuisine is a collection of dishes usually tied to a cultural group.
+message Cuisine {
+	option (google.api.resource) = {
+		type: "foodwheel.com/Cuisine"
+		pattern: "cuisines/{cuisine}"
+	};
+	// Name of the Cuisine.
+	// Should be in the format of "cuisines/{name}"
+	string name = 1;
+}
