@@ -10,6 +10,7 @@ message Cuisine {
 		type: "foodwheel.com/Cuisine"
 		pattern: "cuisines/{cuisine}"
 	};
+
 	// Name of the Cuisine.
 	// Should be in the format of "cuisines/{name}"
 	string name = 1;
