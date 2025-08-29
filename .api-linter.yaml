@@ -1,6 +1,6 @@
 ---
 - included_paths:
-  - 'proto/foodwheel/**/**/cuisine.proto'
+  - 'tydanny/**/character.proto'
   disabled_rules:
   - 'core::0191::java-package'
   - 'core::0191::java-multiple-files'
