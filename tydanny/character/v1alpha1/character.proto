@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package tydanny.character.v1alpha1;
+
+
+// import "google/api/annotations.proto";
+// import "google/api/client.proto";
+import "google/api/field_behavior.proto";
+import "google/api/resource.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/tydanny/tyapis/gen/go/character/v1alpha1;characterv1alpha1";
+
+// A Character in a tabletop game.
+message Character {
+  option (google.api.resource) = {
+    type: "tydanny.com/Character"
+    pattern: "characters/{character}"
+    singular: "character"
+    plural: "characters"
+  };
+
+  // The resource name of the character, for example,
+  // `characters/{character_name}`.
+  string name = 1 [(google.api.field_behavior) = IDENTIFIER];
+
+  // The time that the character was created.
+  google.protobuf.Timestamp create_time = 2 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+  // The most recent time that the character was updated.
+  google.protobuf.Timestamp update_time = 3 [(google.api.field_behavior) = OUTPUT_ONLY];
+}
