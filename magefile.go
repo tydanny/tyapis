@@ -12,17 +12,17 @@ import (
 )
 
 func Lint() {
-	mg.Deps(BufLint, APILint)
-}
-
-func APILint() error {
-	mg.Deps(InstallAPILinter())
-	return sh.RunV(apiLinter())
+	mg.Deps(BufFormat, BufLint)
 }
 
 func BufLint() error {
 	mg.Deps(InstallBuf)
 	return sh.RunV(buf(), "lint")
+}
+
+func BufFormat() error {
+	mg.Deps(InstallBuf)
+	return sh.RunV(buf(), "format", "-w", "-d")
 }
 
 // Generate generates the golang files for all the protobuf apis.
@@ -89,28 +89,6 @@ func InstallBuf() error {
 	err = os.Rename(localBin+"/buf", buf())
 	if err != nil {
 		return fmt.Errorf("failed to rename buf binary: %w", err)
-	}
-
-	return nil
-}
-
-const aipLintVersion = "1.70.2"
-
-func apiLinter() string {
-	return localBin + "/api-linter-" + aipLintVersion
-}
-
-func InstallAPILinter() error {
-	mg.Deps(LocalBin)
-
-	err := goInstall("github.com/googleapis/api-linter/cmd/api-linter@v", aipLintVersion)
-	if err != nil {
-		return fmt.Errorf("failed to install the API linter: %w", err)
-	}
-
-	err = os.Rename(localBin+"/api-linter", apiLinter())
-	if err != nil {
-		return fmt.Errorf("failed to rename the API linter: %w", err)
 	}
 
 	return nil

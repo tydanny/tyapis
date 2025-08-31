@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package tydanny.character.v1alpha1;
 
-
 // import "google/api/annotations.proto";
 // import "google/api/client.proto";
 import "google/api/field_behavior.proto";
@@ -14,7 +13,7 @@ option go_package = "github.com/tydanny/tyapis/gen/go/character/v1alpha1;charact
 // A Character in a tabletop game.
 message Character {
   option (google.api.resource) = {
-    type: "tydanny.com/Character"
+    type: "tydanny.com/character"
     pattern: "characters/{character}"
     singular: "character"
     plural: "characters"
