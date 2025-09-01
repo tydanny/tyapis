@@ -22,14 +22,19 @@ func BufLint() error {
 
 func BufFormat() error {
 	mg.Deps(InstallBuf)
-	return sh.RunV(buf(), "format", "-w", "-d")
+	return sh.RunV(buf(), "format", "-w")
 }
 
 // Generate generates the golang files for all the protobuf apis.
 func Generate() error {
 	mg.Deps(InstallBuf)
 
-	err := sh.Run(buf(), "dep", "update")
+	err := sh.Rm("gen")
+	if err != nil {
+		return fmt.Errorf("failed to clean up generated files: %w", err)
+	}
+
+	err = sh.Run(buf(), "dep", "update")
 	if err != nil {
 		return fmt.Errorf("failed to update protobuf dependencies: %w", err)
 	}

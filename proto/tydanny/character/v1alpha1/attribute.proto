@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package tydanny.character.v1alpha1;
+
+import "google/api/field_behavior.proto";
+import "tydanny/character/v1alpha1/skill.proto";
+
+option go_package = "github.com/tydanny/tyapis/gen/go/character/v1alpha1;characterv1alpha1";
+
+// An Attribute that has a numeric value associated with it.
+// For example, Strength, Charisma, etc.
+message Attribute {
+  // Name of the attribute.
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // The numeric value of an attribute.
+  int32 value = 2 [(google.api.field_behavior) = OPTIONAL];
+
+  // The description of an attribute.
+  string description = 3 [(google.api.field_behavior) = OPTIONAL];
+
+  // A list of skills that are associated with an attribute.
+  repeated Skill skills = 4 [(google.api.field_behavior) = OPTIONAL];
+}
